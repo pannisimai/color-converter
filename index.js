@@ -15,9 +15,16 @@ app.get("/convert/rgbtohsl", (req, res) => {
   return res.send({ colorrgb2 });
 });
 
-// /convert/rgbtohex/
-// /convert/hextorgb/
+app.get("/convert/rgbtohex", (req, res) => {
+  const { r, g, b } = req.query;
+  const colorrgb2 = convert.rgb.hex(r, g, b);
+  return res.send({ colorrgb2 });
+});
 
-// http://localhost:3000/convert/keywordtorgb?color=hotpink
+app.get("/convert/hextorgb", (req, res) => {
+  const colorhex = req.query.hex;
+  const colorhex2 = convert.hex.rgb(colorhex);
+  return res.send({ colorhex2 });
+});
 
 app.listen(port, () => console.log("I'M HERE HOHOOO"));
